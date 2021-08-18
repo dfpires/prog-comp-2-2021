@@ -39,6 +39,7 @@ let gerenciaRedesSociais = () => {
     }
 
   // cadastro dos usuários
+  /*
   let vetorUsuarios = []
   let i = 0
   while (i<5){
@@ -64,7 +65,24 @@ let gerenciaRedesSociais = () => {
       }
       i++
   }
-  // Exe1) o usuário informa informa a rede social, e o programa retorna quantos posts foram feitos
+  */
+  // Exe1) o usuário informa a rede social, e o programa retorna quantos posts foram feitos
+  let codigo = Number(prompt(`Informe o código da rede social`))
+  // percorre vetor procurando
+  let conta = 0
+  for(let i=0;i<5;i++){ // percore o vetor vetorUsuarios
+    if (vetorUsuarios[i].codigoRedeSocial == codigo){ // encontrei
+        conta = conta + vetorUsuarios[i].qtdePosts
+    }
+  }
+  if (conta == 0){
+      console.log(`Não houve postagem ou rede social não existe`)
+  }
+  else {
+      console.log(`A qtde de post na rede social ${codigo} foi ${conta}`)
+  }
+
+
   // Exe2) o programa retorna quantos posts foram feitos em todas as redes sociais
   // Exe3) o usuário informa informa o login do usuário, e o programa retorna quantos posts ele fez
   // Exe4) o programa retorna quantos posts foram feitos por cada usuário
