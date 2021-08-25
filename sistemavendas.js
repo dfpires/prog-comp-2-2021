@@ -4,7 +4,7 @@ let sistemaVendas = () => {
     let opcao
     let vetVendedores = []
     do {
-        opcao = prompt(`Informe: \n1. Cadastrar vendedor \n2. Cadastrar venda \n3. Sair`)
+        opcao = Number(prompt(`Informe: \n1. Cadastrar vendedor \n2. Cadastrar venda \n3. Sair`))
         switch(opcao){
             case 1: let objeto = {
                         codigo: Number(prompt(`Informe código`)),
