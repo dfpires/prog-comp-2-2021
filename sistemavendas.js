@@ -30,16 +30,24 @@ let sistemaVendas = () => {
                     }
                     console.log(vetVendedores)
                     break
-            case 2: let objeto = {
+            case 2: let objeto1 = {
                         codigo: Number(prompt(`Informe código do vendedor`)),
                         mes: Number(prompt(`Informe mês da venda`)),
                         valor: Number(prompt(`Informe o valor da venda`)) 
                     }
-                    let achou = false
+                    let achou1 = false
                     for(let i=0;i<vetVendas.length;i++){
-                        
+                        if ((vetVendas[i].codigo == objeto1.codigo) && (vetVendas[i].mes == objeto1.mes)){
+                            achou1 = true // encontrei - não podemos cadastrar venda
+                        }
                     }
-                    vetVendas.push(objeto)
+                    if (!achou1){
+                        vetVendas.push(objeto1)
+                    }
+                    else {
+                        alert(`Já existe vende deste vendedor neste mês`)
+                    }
+                    console.log(vetVendas)
                     break
             case 3: alert(`O programa será encerrado`)
                     break
