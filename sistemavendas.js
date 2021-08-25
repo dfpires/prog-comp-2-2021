@@ -3,6 +3,7 @@ let sistemaVendas = () => {
 
     let opcao
     let vetVendedores = []
+    let vetVendas = []
     do {
         opcao = Number(prompt(`Informe: \n1. Cadastrar vendedor \n2. Cadastrar venda \n3. Sair`))
         switch(opcao){
@@ -27,8 +28,18 @@ let sistemaVendas = () => {
                     else {
                         alert(`Vendedor já existe com este código`)	
                     }
+                    console.log(vetVendedores)
                     break
-            case 2:
+            case 2: let objeto = {
+                        codigo: Number(prompt(`Informe código do vendedor`)),
+                        mes: Number(prompt(`Informe mês da venda`)),
+                        valor: Number(prompt(`Informe o valor da venda`)) 
+                    }
+                    let achou = false
+                    for(let i=0;i<vetVendas.length;i++){
+                        
+                    }
+                    vetVendas.push(objeto)
                     break
             case 3: alert(`O programa será encerrado`)
                     break
