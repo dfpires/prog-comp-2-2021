@@ -2,7 +2,7 @@
 let gerenciaRedesSociais = () => {
     // cadastro das redes sociais
     let vetorRedesSociais = []
-    for(let i=0;i<5;i++){
+    for(let i=0;i<3;i++){
         let objeto = {
             codigo: Number(prompt(`Informe código da rede social`)),
             nome: prompt(`Informe nome da rede social`),
@@ -14,7 +14,7 @@ let gerenciaRedesSociais = () => {
     // cadastro dos usuários
     let vetorUsuarios = []
     let i = 0
-    while (i<5){
+    while (i<3){
         let objeto = {
             login: prompt(`Informe o login do usuário`),
             nome: prompt(`Informe o nome do usuário`),
@@ -24,7 +24,7 @@ let gerenciaRedesSociais = () => {
         // só faremos isso se a rede social existir
         let achou = false // assumo que não encontrei a rede social
         let j = 0 // índice do vetor de redes sociais
-        while (!achou && j<5 ){ // sai ou porque achou ou porque acabou o vetor
+        while (!achou && j<3 ){ // sai ou porque achou ou porque acabou o vetor
             if (vetorRedesSociais[j].codigo == objeto.codigoRedeSocial){ // achamos
                 vetorUsuarios.push(objeto)// inserimos
                 achou = true
@@ -70,7 +70,7 @@ let gerenciaRedesSociais = () => {
   let codigo = Number(prompt(`Informe o código da rede social`))
   // percorre vetor procurando
   let conta = 0
-  for(let i=0;i<5;i++){ // percore o vetor vetorUsuarios
+  for(let i=0;i<3;i++){ // percore o vetor vetorUsuarios
     if (vetorUsuarios[i].codigoRedeSocial == codigo){ // encontrei
         conta = conta + vetorUsuarios[i].qtdePosts
     }
@@ -85,15 +85,15 @@ let gerenciaRedesSociais = () => {
 
   // Exe2) o programa retorna quantos posts foram feitos em todas as redes sociais
   let vetor = []
-  for (let i=0;i<5;i++){ // para cada rede social
+  for (let i=0;i<3;i++){ // para cada rede social
       vetor[i] = 0  
-      for(let j=0;j<5;j++){ // procura nos usuários
+      for(let j=0;j<3;j++){ // procura nos usuários
         if (vetorRedesSociais[i].codigo == vetorUsuarios[j].codigoRedeSocial){
             vetor[i] = vetor[i] + vetorUsuarios[i].qtdePosts
         }
       }
       // terminou de soma os posts de uma rede social
-      console.log(`A qtde de post da rede social ${vetorRedesSociais[i].codigo} é ${vetor[i]}`)
+      alert(`A qtde de post da rede social ${vetorRedesSociais[i].codigo} é ${vetor[i]}`)
   }
   // Exe3) o usuário informa  o login do usuário, e o programa retorna quantos posts ele fez
   // solicitar usuário informar login
@@ -101,7 +101,7 @@ let gerenciaRedesSociais = () => {
   // procura o login no vetor de usuários
   let somaPosts = 0
   let achou = false // não encontrei o usuário
-  for(let i=0;i<5;i++){
+  for(let i=0;i<3;i++){
       if (login == vetorUsuarios[i].login){ // achei o usuário procurado
             somaPosts = somaPosts + vetorUsuarios[i].qtdePosts
             achou = true // achou o usuário
@@ -115,11 +115,11 @@ let gerenciaRedesSociais = () => {
   }
   // Exe4) o programa retorna quantos posts foram feitos por cada usuário
   let vetorUsuariosPosts = []
-  for(let i=0;i<5;i++){ // para cada usuário do vetor
+  for(let i=0;i<3;i++){ // para cada usuário do vetor
     let achou = false // não achou
     for(let j=0;j<vetorUsuariosPosts.length;j++){ // verifica se o usuário já existe
     
-        if (vetorUsuarios[i].login == vetorUsuariosPosts[i].login){ // usuário já existe
+        if (vetorUsuarios[i].login == vetorUsuariosPosts[j].login){ // usuário já existe
             // soma a qtde de posts do usuário
             vetorUsuariosPosts[j].qtde = vetorUsuariosPosts[j].qtde + vetorUsuarios[i].qtdePosts
             achou = true
@@ -133,5 +133,5 @@ let gerenciaRedesSociais = () => {
         })
     }
   }
-
+  console.log(vetorUsuariosPosts)
 }
