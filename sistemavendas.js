@@ -5,7 +5,7 @@ let sistemaVendas = () => {
     let vetVendedores = []
     let vetVendas = []
     do {
-        opcao = Number(prompt(`Informe: \n1. Cadastrar vendedor \n2. Cadastrar venda \n3. Procura venda por mês e vendedor \n4. Soma venda por vendedor \n5. Sair`))
+        opcao = Number(prompt(`Informe: \n1. Cadastrar vendedor \n2. Cadastrar venda \n3. Procura venda por mês e vendedor \n4. Soma venda por vendedor \n5. Mostra a maior venda do mês \n6. Sair`))
         switch(opcao){
             case 1: let objeto = {
                         codigo: Number(prompt(`Informe código`)),
@@ -89,7 +89,7 @@ let sistemaVendas = () => {
                                 vendedorMaisVendeu = vetVendas[i].codigo
                             }
                         }
-                    }
+                    }+
                     console.log(`O vendedor que mais vendeu foi ${vendedorMaisVendeu} com ${maiorValor}`)
                     break
             case 6: alert(`O programa será encerrado`)
