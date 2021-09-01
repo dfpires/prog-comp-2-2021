@@ -37,6 +37,7 @@ let sistemaVendas = () => {
                     }
                     let achou1 = false
                     for(let i=0;i<vetVendas.length;i++){
+                        // não podemos cadastrar duas vendas para um mesmo vendedor no mesmo mês
                         if ((vetVendas[i].codigo == objeto1.codigo) && (vetVendas[i].mes == objeto1.mes)){
                             achou1 = true // encontrei - não podemos cadastrar venda
                         }
@@ -49,7 +50,20 @@ let sistemaVendas = () => {
                     }
                     console.log(vetVendas)
                     break
-            case 3: alert(`O programa será encerrado`)
+            case 3: let codigo = Number(prompt(`Informe o código do vendedor`))
+                    let mes = Number(prompt(`Informe o mês da venda`))
+                    // percorre vetor de vendas
+                    let achou = false
+                    for(let i=0;i<vetVendas.length;i++){
+                        if ((vetVendas[i].codigo == codigo) && (vetVendas[i].mes == mes)){
+                            console.log(`O valor da venda do funcionário ${codigo} no mês ${mes} foi ${vetVendas[i].valor}`)
+                            achou = true
+                        }
+                    }
+                    if (!achou){
+                        console.log(`Venda não encontrada para este funcionário neste mês`)
+                    }
+            alert(`O programa será encerrado`)
                     break
             default: alert(`Opção inválida`)
         }
