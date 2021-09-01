@@ -5,7 +5,7 @@ let sistemaVendas = () => {
     let vetVendedores = []
     let vetVendas = []
     do {
-        opcao = Number(prompt(`Informe: \n1. Cadastrar vendedor \n2. Cadastrar venda \n3. Procura venda por mês e vendedor \n4. Soma venda por vendedor \n5. Mostra a maior venda do mês \n6. Sair`))
+        opcao = Number(prompt(`Informe: \n1. Cadastrar vendedor \n2. Cadastrar venda \n3. Procura venda por mês e vendedor \n4. Soma venda por vendedor \n5. Mostra a maior venda do mês \n6. Valor por mês \n7. Sair`))
         switch(opcao){
             case 1: let objeto = {
                         codigo: Number(prompt(`Informe código`)),
@@ -86,16 +86,24 @@ let sistemaVendas = () => {
                         if (vetVendas[i].mes == mes5){
                             if (vetVendas[i].valor > maiorValor){
                                 maiorValor = vetVendas[i].valor // atualiza o maior valor
-                                vendedorMaisVendeu = vetVendas[i].codigo
+                                vendedorMaisVendeu = vetVendas[i].codigo // atualiza vendedor
                             }
                         }
                     }+
                     console.log(`O vendedor que mais vendeu foi ${vendedorMaisVendeu} com ${maiorValor}`)
                     break
-            case 6: alert(`O programa será encerrado`)
+            case 6: let vetMeses = [0,0,0,0,0,0,0,0,0,0,0,0]
+                    // percorre o vetor de vendas
+                    for(let i=0;i<vetVendas.length;i++){
+                        let aux = vetVendas[i].mes // mês da venda
+                        vetMeses[aux-1] = vetMeses[aux-1] + vetVendas[i].valor
+                    }
+                    console.log(vetMeses)
+                    break
+            case 7: alert(`O programa será encerrado`)
                     break
             default: alert(`Opção inválida`)
         }
     }
-    while (opcao != 6)
+    while (opcao != 7)
 }
