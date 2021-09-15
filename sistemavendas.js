@@ -17,41 +17,13 @@ let sistemaVendas = () => {
                     mes = Number(prompt(`Informe o mês da venda`))
                     consultaVendasCodigoMes(vetVendas, codigo, mes)
                     break
-            case 4: let codigo4 = Number(prompt(`Informe o código do vendedor`))
-                    // percorre o vetor de vendas
-                    let soma = 0
-                    for(let i=0;i<vetVendas.length;i++){
-                        if (vetVendas[i].codigo == codigo4){
-                            soma = soma + vetVendas[i].valor
-                        }
-                    }
-                    if (soma == 0){
-                        console.log(`Venda não encontrada para este funcionário, ou venda igual o 0`)
-                    }
-                    else {
-                        console.log(` O total de vendas do vendedor ${codigo4} foi ${soma}`)
-                    }
+            case 4: codigo = Number(prompt(`Informe o código do vendedor`))
+                    consultaVendasCodigo(vetVendas, codigo)
                     break
-            case 5: let mes5 = Number(prompt(`Informe o mês de interesse`))
-                    let maiorValor = 0
-                    let vendedorMaisVendeu = 0 
-                    for(let i=0;i<vetVendas.length;i++){
-                        if (vetVendas[i].mes == mes5){
-                            if (vetVendas[i].valor > maiorValor){
-                                maiorValor = vetVendas[i].valor // atualiza o maior valor
-                                vendedorMaisVendeu = vetVendas[i].codigo // atualiza vendedor
-                            }
-                        }
-                    }+
-                    console.log(`O vendedor que mais vendeu foi ${vendedorMaisVendeu} com ${maiorValor}`)
+            case 5: mes = Number(prompt(`Informe o mês de interesse`))
+                    consultaVendedor(vetVendas, mes)
                     break
-            case 6: let vetMeses = [0,0,0,0,0,0,0,0,0,0,0,0]
-                    // percorre o vetor de vendas
-                    for(let i=0;i<vetVendas.length;i++){
-                        let aux = vetVendas[i].mes // mês da venda
-                        vetMeses[aux-1] = vetMeses[aux-1] + vetVendas[i].valor
-                    }
-                    console.log(vetMeses)
+            case 6: consultaVendasMes(vetVendas)
                     break
             case 7: alert(`O programa será encerrado`)
                     break
@@ -120,4 +92,44 @@ let consultaVendasCodigoMes = (vetVendas, codigo, mes) => {
     if (!achou){
         console.log(`Venda não encontrada para este funcionário neste mês`)
     }
+}
+
+let consultaVendasCodigo = (vetVendas, codigo) => {
+     // percorre o vetor de vendas
+     let soma = 0
+     for(let i=0;i<vetVendas.length;i++){
+         if (vetVendas[i].codigo == codigo){
+             soma = soma + vetVendas[i].valor
+         }
+     }
+     if (soma == 0){
+         console.log(`Venda não encontrada para este funcionário, ou venda igual o 0`)
+     }
+     else {
+         console.log(` O total de vendas do vendedor ${codigo} foi ${soma}`)
+     }
+}
+
+let consultaVendedor = (vetVendas, mes) => {
+    let maiorValor = 0
+    let vendedorMaisVendeu = 0 
+    for(let i=0;i<vetVendas.length;i++){
+        if (vetVendas[i].mes == mes){
+            if (vetVendas[i].valor > maiorValor){
+                maiorValor = vetVendas[i].valor // atualiza o maior valor
+                vendedorMaisVendeu = vetVendas[i].codigo // atualiza vendedor
+            }
+        }
+    }
+    console.log(`O vendedor que mais vendeu foi ${vendedorMaisVendeu} com ${maiorValor}`)
+}
+
+let consultaVendasMes = (vetVendas) => {
+    let vetMeses = [0,0,0,0,0,0,0,0,0,0,0,0]
+    // percorre o vetor de vendas
+    for(let i=0;i<vetVendas.length;i++){
+        let aux = vetVendas[i].mes // mês da venda
+        vetMeses[aux-1] = vetMeses[aux-1] + vetVendas[i].valor
+    }
+    console.log(vetMeses)
 }
