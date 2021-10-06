@@ -2,8 +2,8 @@
 let sistemaVendas = () => {
 
     let opcao
-    let vetVendedores = [] // vetor
-    let vetVendas = [] // vetor
+    let vetVendedores = []
+    let vetVendas = []
     let codigo
     let mes
     do {
