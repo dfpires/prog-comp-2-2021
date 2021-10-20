@@ -1,71 +1,43 @@
-// cria a função
-let sistemaVendas = () => {
-    // vetor de meses
-    let meses = ["Janeiro", "Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"]
-    // declara a matriz
-    let matriz = []
-    let opcao
-    do {
-        opcao = Number(prompt(`1. Cadastrar vendas \n2. Total vendido em cada mês \n3. Total vendido em cada semana \n4.Total vendido no ano \n5. Sair`))
-        switch(opcao){
-            case 1: cadastraVendas(matriz, meses)
-                    break
-            case 2: totalVendidoMes(matriz, meses)
-                    break
-            case 3: totalVendidoSemana(matriz)
-                    break
-            case 4: totalVendidoAno(matriz)
-                    break
-            case 5: alert(`Saindo do programa`)
-                    break
-            default: alert(`Opção inválida`)
-        }
-    }
-    while (opcao != 5)
-}
 
-let cadastraVendas = (matriz, meses) => {
-    for(let i=0;i<12;i++){ // para cada mês
-        matriz[i] = []
-        alert(`Informe as vendas do mês ${meses[i]}`)
-        for(let j=0;j<4;j++){ // para cada semana
-            matriz[i][j]= Number(prompt(`Informe o valor vendido na ${j+1}ª. semana `))
+let sistemaAcademico = () => {
+    // declaração das estrut dados
+    let vet = []
+    let mat = []
+    for(let i=0;i<3;i++){
+        // para cada aluno
+        // insere nome do aluno no objeto
+        let objeto = {
+            nome:prompt(`Informe nome do aluno ${i+1}`),
+            media: 0 
+        }
+        // insere o objeto no vetor
+        vet.push(objeto)
+        mat[i] = [] // aloca espaço na memória para a matriz
+        alert(`Informe 5 notas do aluno ${vet[i].nome}`)
+        for(let j=0;j<5;j++){
+            // adiciona a nota na matriz
+            mat[i][j] = Number(prompt(`Nota ${j+1}`))
         }
     }
-}
-
-let totalVendidoMes = (matriz, meses) => {
-    let soma
-    for(let i=0;i<12;i++){ // para cada mês
-        soma = 0
-        for(let j=0;j<4;j++){ // para cada semana
-            soma = soma + matriz[i][j]
+    // calcula média
+    let turma = 0
+    for(let i=0;i<3;i++){
+        for(let j=0;j<5;j++){
+            // soma as notas de um aluno
+            vet[i].media = vet[i].media + mat[i][j]
         }
-        // acabou de somar o mês
-        alert(`Total vendido no mês ${meses[i]} foi ${soma}`)
-    }
-}
-
-let totalVendidoSemana = (matriz) => {
-    // para cada coluna
-    let soma
-    for(let j=0;j<4;j++){
-        // para cada linha
-        soma = 0
-        for(let i=0;i<12;i++){
-            soma = soma + matriz[i][j]
+        vet[i].media = vet[i].media / 5 // calcula a média 
+        turma = turma + vet[i].media
+        if (vet[i].media >= 6){
+            alert(`Aluno ${vet[i].nome} foi aprovado`)
+        }  
+        else if (vet[i].media >=3){
+            alert(`Aluno ${vet[i].nome} está de exame`)
         }
-        // acabaram os meses
-        alert(`A soma de vendas da semana ${j+1} é ${soma}`)
-    }
-}
-
-let totalVendidoAno = (matriz) => {
-    let soma = 0
-    for(let i=0;i<12;i++){ // para cada linha
-        for(let j=0;j<12;j++){ // para cada coluna
-            soma = soma + matriz[i][j]
+        else {
+            alert(`Aluno ${vet[i].nome} foi reprovado`)
         }
     }
-    alert(`O total vendido no ano foi de ${soma}`)
+    turma = turma / 3
+    alert(`A média da turma é ${turma}`)
 }
