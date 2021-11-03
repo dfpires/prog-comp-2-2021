@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function chama(){
+            let cep = Number(document.getElementById("cep").value)
+            let requisicao = new XMLHttpRequest()
+            requisicao.open('GET', `https://viacep.com.br/ws/${cep}/json`, true)
+            requisicao.onload = function(){
+                let conteudo = JSON.parse(this.response)
+                if (!("erro" in conteudo)){
+                    console.log(conteudo.logradouro)
+                    document.getElementById("rua").value = conteudo.logradouro
+                    document.getElementById("bairro").value = conteudo.bairro
+                    document.getElementById("cidade").value = conteudo.localidade
+                }  
+                else {
+                    alert("Não encontrado")
+                }
+                
+            }
+        }
+    </script>
+</head>
+<body>
+    
+    CEP <input type="number" id="cep">
+    Rua <input type="text" id="rua">
+    Bairro <input type="text" id="bairro">
+    Cidade <input type="text" id="cidade">
+    <button type="button" onclick="chama()"> Chama </button>
+
+</body>
+</html>
