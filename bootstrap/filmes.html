@@ -8,21 +8,22 @@
     <script>
         function chamaAPI(){
             // recupera o CEP
-            let cep = Number(document.getElementById("cep").value)
+            let title = document.getElementById("title").value
             // cria objeto de requisição
             let req = new XMLHttpRequest()
             // faz a requisição
-            
-            req.open('GET', `https://viacep.com.br/ws/${cep}/json`, true)
+            let apikey = 'b5c16b59'
+            req.open('GET', `https://www.omdbapi.com/?apikey=${apikey}&t=${title}`, true)
             // tratar a resposta da API
             req.onload = function(){
                 // recupera o conteúdo e transforma em JSON
                 let conteudo = JSON.parse(this.response)
                 // coloca os dados nas caixas de texto
-                document.getElementById("logradouro").value = conteudo.logradouro
-                document.getElementById("bairro").value = conteudo.bairro
-                document.getElementById("cidade").value = conteudo.localidade
-                document.getElementById("estado").value = conteudo.uf
+                document.getElementById("Title").value = conteudo.Title
+                document.getElementById("Year").value = conteudo.Year
+                document.getElementById("imdbRating").value = conteudo.imdbRating
+                document.getElementById("imdbVotes").value = conteudo.imdbVotes
+                document.getElementById("Poster").src = conteudo.Poster
             }
             // envia a requisição
             req.send()
@@ -65,54 +66,30 @@
             <form>
                 <!-- a vantagem de lidar com o conceito de rem é que ele vale 16px
                 isso facilita a responsividade, pois o dispositivo gráfico varia de qtde pxs -->
-                <div class="mb-3"> <!-- define margin abaixo de 1rem (16px)-->
-                    <label for="email" class="form-label"> E-mail </label>
-                    <input type="email" class="form-control" id="email"/>
-                </div>
-                <div class="mb-3"> <!-- define margin abaixo de 1rem (16px)-->
-                    <label for="nome" class="form-label"> Nome </label>
-                    <input type="text" class="form-control" id="nome"/>
-                </div>
-                <div class="border mb-3">
-                    <div class="mb-3 form-check"> <!-- define margin abaixo de 1rem (16px)-->
-                        <input type="checkbox" class="form-check-input" id="esporte"/>
-                        <label class="form-check-label" for="esporte"> Esporte </label>
-                    </div>
-                    <div class="mb-3 form-check"> <!-- define margin abaixo de 1rem (16px)-->
-                        <input type="checkbox" class="form-check-input" id="musica"/>
-                        <label class="form-check-label" for="musica"> Música </label>
-                    </div>
-                </div>
-                <div class="border mb-3">
-                    <div class="mb-3 form-check"> <!-- define margin abaixo de 1rem (16px)-->
-                        <input type="radio" class="form-check-input" id="masculino" name="sexo"/>
-                        <label class="form-check-label" for="masculino"> Masculino </label>
-                    </div>
-                    <div class="mb-3 form-check"> <!-- define margin abaixo de 1rem (16px)-->
-                        <input type="radio" class="form-check-input" id="feminino" name="sexo"/>
-                        <label class="form-check-label" for="feminino"> Feminino </label>
-                    </div>
-                </div>
+                
                 <div class="mb-3">
-                    <label class="form-label" for="cep"> CEP </label>
-                    <input type="text" id="cep" class="form-control" placeholder="Informe cep sem pontos e traço"/>
+                    <label class="form-label" for="title"> Título </label>
+                    <input type="text" id="title" class="form-control" placeholder="Informe título do filme em inglês"/>
                     <button onClick="chamaAPI()" type="button" class="btn btn-info"> Busca </button>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="logradouro"> Logradouro </label> 
-                    <input type="text" id="logradouro" class="form-control"/>
+                    <label class="form-label" for="Title"> Title </label> 
+                    <input type="text" id="Title" class="form-control"/>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="bairro"> Bairro </label> 
-                    <input type="text" id="bairro" class="form-control"/>
+                    <label class="form-label" for="Year"> Year </label> 
+                    <input type="text" id="Year" class="form-control"/>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="cidade"> Cidade </label> 
-                    <input type="text" id="cidade" class="form-control"/>
+                    <label class="form-label" for="imdbRating"> imdbRating </label> 
+                    <input type="text" id="imdbRating" class="form-control"/>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="estado"> Estado </label> 
-                    <input type="text" id="estado" class="form-control"/>
+                    <label class="form-label" for="imdbVotes"> imdbVotes </label> 
+                    <input type="text" id="imdbVotes" class="form-control"/>
+                </div>
+                <div class="mb-3">
+                    <img id="Poster" class="img-fluid"/>
                 </div>
                 <button type="submit" class="btn btn-primary"> Enviar </button>
             </form>
